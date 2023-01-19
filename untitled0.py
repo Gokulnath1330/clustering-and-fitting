@@ -64,4 +64,19 @@ plt.title('GDP vs Total Imports')
 plt.ylabel('Total Imports')
 plt.xlabel('Total GDP of a country')
 plt.show()
+
+#curve_fit function
+k=merged_data[(merged_data['Country_Name']=='LUX')]
+txt1 = k.values
+x, y = txt1[:, 2], txt1[:, 3]
+
+def functn(x, a, b, c):
+    return a*x**2+b*x+c
+param, covar = curve_fit(functn, x, y)
+param, _ = curve_fit(functn, x, y)
+print("Function Covariance ->", covar)
+print("Function Parameters ->", param)
+
+a, b, c = param[0], param[1], param[2]
+y_fit =a*x**2+b*x+c
     
