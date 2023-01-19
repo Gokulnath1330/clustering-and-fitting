@@ -50,4 +50,18 @@ merged_data.head()
 merged_data2 = merged_data.drop('Country_Name', axis = 1)
 k_clustering = KMeans(n_clusters=3, init='k-means++', random_state=0).fit(merged_data2)
 
+#Clean fuels access and technologies access clustering in rural areas
+sns.scatterplot(data=merged_data, x="Country_Name", y="EG.CFT.ACCS.RU.ZS", hue=k_clustering.labels_)
+plt.legend(loc='lower right')
+plt.show()
+
+# Association between Total imports and Total GDP of a country(Brazil)
+b=merged_data[(merged_data['Country_Name']=='BRA')]
+txt = b.values
+x, y = txt[:, 2], txt[:, 3]
+plt.scatter(x, y,color="green")
+plt.title('GDP vs Total Imports')
+plt.ylabel('Total Imports')
+plt.xlabel('Total GDP of a country')
+plt.show()
     
